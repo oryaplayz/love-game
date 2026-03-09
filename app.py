@@ -1,3 +1,7 @@
+from flask import Flask
+
+app = Flask(__name__)
+
 HTML_PAGE = """
 <!DOCTYPE html>
 <html>
@@ -13,7 +17,6 @@ HTML_PAGE = """
             transition: background 2s ease;
         }
 
-        /* Floating hearts */
         .heart {
             position: absolute;
             color: #ff4d6d;
@@ -27,7 +30,6 @@ HTML_PAGE = """
             100% { transform: translateY(-800px) scale(1.8); opacity: 0; }
         }
 
-        /* Shooting star */
         .shooting-star {
             position: absolute;
             width: 3px;
@@ -97,7 +99,6 @@ HTML_PAGE = """
             transition: opacity 1s ease;
         }
 
-        /* Typewriter effect */
         .typewriter {
             display: inline-block;
             border-right: 3px solid white;
@@ -130,7 +131,6 @@ HTML_PAGE = """
 <div id="message"></div>
 
 <script>
-/* Floating hearts generator */
 setInterval(() => {
     let heart = document.createElement("div");
     heart.className = "heart";
@@ -142,7 +142,6 @@ setInterval(() => {
     setTimeout(() => heart.remove(), 6000);
 }, 500);
 
-/* Shooting star */
 function shootingStar() {
     let star = document.createElement("div");
     star.className = "shooting-star";
@@ -153,14 +152,12 @@ function shootingStar() {
 }
 setInterval(shootingStar, 5000);
 
-/* No button runs away */
 function runAway() {
     let btn = document.getElementById("noBtn");
     btn.style.left = Math.random() * (window.innerWidth - 200) + "px";
     btn.style.top = Math.random() * (window.innerHeight - 200) + "px";
 }
 
-/* Confetti */
 function confetti() {
     for (let i = 0; i < 80; i++) {
         let conf = document.createElement("div");
@@ -193,3 +190,7 @@ function love() {
 </body>
 </html>
 """
+
+@app.route("/")
+def home():
+    return HTML_PAGE
