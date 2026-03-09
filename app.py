@@ -123,7 +123,7 @@ HTML_PAGE = """
 <body>
 
 <h1>WAFAA ❤️</h1>
-<h2>You mean the world to me</h2>
+<h2>I LOVE YOU ❤️</h2>
 
 <div class="buttons">
     <button class="yes" onclick="love()">I love you too</button>
@@ -196,3 +196,4 @@ function love() {
 @app.route("/")
 def home():
     return HTML_PAGE
+
