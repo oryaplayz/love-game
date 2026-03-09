@@ -1,7 +1,9 @@
 from flask import Flask
 
+# REQUIRED STARTING LINES (Render needs these)
 app = Flask(__name__)
 
+# FULL HTML PAGE
 HTML_PAGE = """
 <!DOCTYPE html>
 <html>
