@@ -219,8 +219,27 @@ setInterval(shootingStar, 5000);
 
 function runAway() {
     let btn = document.getElementById("noBtn");
-    let x = Math.random() * (window.innerWidth - 160);
-    let y = Math.random() * (window.innerHeight - 220) + 80;
+
+    // Button size
+    const btnWidth = btn.offsetWidth;
+    const btnHeight = btn.offsetHeight;
+
+    // Screen boundaries with padding
+    const padding = 40;
+
+    const maxX = window.innerWidth - btnWidth - padding;
+    const maxY = window.innerHeight - btnHeight - padding;
+
+    // Generate new position
+    let x = Math.random() * maxX;
+    let y = Math.random() * maxY;
+
+    // Prevent overlapping the top text
+    if (y < 150) y = 150;
+
+    // Smooth, slower movement
+    btn.style.transition = "left 0.35s ease, top 0.35s ease";
+
     btn.style.left = x + "px";
     btn.style.top = y + "px";
 }
@@ -380,3 +399,4 @@ def home():
 @app.route("/letter")
 def letter():
     return LETTER_PAGE
+
