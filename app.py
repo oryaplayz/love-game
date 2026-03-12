@@ -13,6 +13,7 @@ LOVE_PAGE = """
         font-family: Arial, sans-serif;
         text-align: center;
         margin-top: 80px;
+        overflow: hidden;
     }
 
     h1 {
@@ -24,6 +25,7 @@ LOVE_PAGE = """
         justify-content: center;
         gap: 20px;
         margin-top: 30px;
+        position: relative;
     }
 
     button {
@@ -45,9 +47,26 @@ LOVE_PAGE = """
         color: white;
         position: absolute;
     }
+
+    @keyframes shake {
+        0% { transform: translate(0, 0) rotate(0deg); }
+        25% { transform: translate(3px, -3px) rotate(2deg); }
+        50% { transform: translate(-3px, 3px) rotate(-2deg); }
+        75% { transform: translate(3px, 3px) rotate(1deg); }
+        100% { transform: translate(0, 0) rotate(0deg); }
+    }
 </style>
 </head>
 <body>
+
+<!-- Hidden YouTube Love Song -->
+<iframe 
+    width="0" 
+    height="0" 
+    src="https://www.youtube.com/embed/2Bc9ET7XGDg?autoplay=1&loop=1&playlist=2Bc9ET7XGDg"
+    frameborder="0"
+    allow="autoplay">
+</iframe>
 
 <h1>Do you love me?</h1>
 
@@ -59,6 +78,15 @@ LOVE_PAGE = """
 <script>
     const noBtn = document.getElementById("noBtn");
     const yesBtn = document.getElementById("yesBtn");
+
+    const funnyMessages = [
+        "Nice try 😭",
+        "You can't escape love 😤",
+        "Come back here 😡",
+        "Stop chasing me 😭",
+        "Bro chill 😭",
+        "You really trying to click no?"
+    ];
 
     function moveButton() {
         const padding = 20;
@@ -73,6 +101,11 @@ LOVE_PAGE = """
 
         noBtn.style.left = newX + "px";
         noBtn.style.top = newY + "px";
+
+        noBtn.style.animation = "shake 0.3s";
+        noBtn.style.transform = "rotate(" + (Math.random() * 20 - 10) + "deg)";
+
+        alert(funnyMessages[Math.floor(Math.random() * funnyMessages.length)]);
     }
 
     noBtn.addEventListener("mouseenter", moveButton);
@@ -91,4 +124,4 @@ def love_game():
     return render_template_string(LOVE_PAGE)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
